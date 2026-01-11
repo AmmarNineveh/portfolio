@@ -1,89 +1,70 @@
 'use client';
 
-const skills = [
-    { name: 'TypeScript', icon: '📘' },
-    { name: 'Next.js', icon: '▲' },
-    { name: 'React', icon: '⚛️' },
-    { name: 'Flutter', icon: '🦋' },
-    { name: 'Node.js', icon: '🟢' },
-    { name: 'Rust', icon: '🦀' },
-    { name: 'Python', icon: '🐍' },
-    { name: 'Firebase', icon: '🔥' },
-    { name: 'AI/ML', icon: '🤖' },
-    { name: 'Gemini API', icon: '✨' },
-    { name: 'Claude API', icon: '🧠' },
-    { name: 'SQLite', icon: '🗄️' },
-];
+import { motion } from 'framer-motion';
+import { Code2, Server, Database, Cpu } from 'lucide-react';
 
-const stats = [
-    { number: '4+', label: 'Major Projects' },
-    { number: '12+', label: 'Technologies' },
-    { number: '2+', label: 'Years Experience' },
+const skills = [
+    { name: 'Frontend', icon: <Code2 className="w-5 h-5" />, items: ['Next.js', 'React', 'TypeScript', 'Tailwind'] },
+    { name: 'Backend', icon: <Server className="w-5 h-5" />, items: ['Node.js', 'Rust', 'Python', 'APIs'] },
+    { name: 'Data', icon: <Database className="w-5 h-5" />, items: ['PostgreSQL', 'Firebase', 'SQLite', 'Redis'] },
+    { name: 'AI/ML', icon: <Cpu className="w-5 h-5" />, items: ['Gemini API', 'Claude API', 'Whisper', 'LLMs'] },
 ];
 
 export default function About() {
     return (
-        <section id="about" className="relative">
-            <div className="max-w-6xl mx-auto">
-                {/* Section Header */}
-                <h2 className="section-title">
-                    About <span className="gradient-text">Me</span>
-                </h2>
-                <p className="section-subtitle">
-                    A passionate developer from Iraq, building innovative solutions with
-                    cutting-edge technologies
-                </p>
+        <section id="about" className="py-24 max-w-5xl mx-auto px-6">
+            <div className="grid lg:grid-cols-12 gap-16 items-start">
 
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    {/* Left: Bio */}
-                    <div className="space-y-6">
-                        <div className="glass rounded-2xl p-6">
-                            <h3 className="text-xl font-semibold mb-4 gradient-text">
-                                Who Am I?
-                            </h3>
-                            <p className="text-[var(--text-secondary)] leading-relaxed">
-                                I&apos;m a full-stack developer with a passion for AI and
-                                innovative technologies. I love creating projects that push
-                                boundaries — from intelligent Discord bots that build
-                                relationships with users, to AI-powered operating systems and
-                                comprehensive educational apps.
-                            </p>
-                            <p className="text-[var(--text-secondary)] leading-relaxed mt-4">
-                                My focus is on building solutions that are not just functional,
-                                but intelligent and user-friendly. I believe in the power of AI
-                                to transform how we interact with technology.
-                            </p>
-                        </div>
+                {/* Left Column */}
+                <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="lg:col-span-5"
+                >
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">About Me</h2>
+                    <div className="space-y-5 text-zinc-400 leading-relaxed">
+                        <p>
+                            I don't just write code—I engineer systems. With deep expertise in
+                            <span className="text-white font-medium"> AI integration</span> and
+                            <span className="text-white font-medium"> scalable architecture</span>,
+                            I create solutions that are both powerful and refined.
+                        </p>
+                        <p>
+                            Currently building intelligent operating systems and educational platforms
+                            that push the boundaries of what's possible with generative AI.
+                        </p>
+                    </div>
+                </motion.div>
 
-                        {/* Stats */}
-                        <div className="grid grid-cols-3 gap-4">
-                            {stats.map((stat) => (
-                                <div key={stat.label} className="glass rounded-xl p-4 text-center">
-                                    <div className="text-2xl md:text-3xl font-bold gradient-text">
-                                        {stat.number}
-                                    </div>
-                                    <div className="text-xs md:text-sm text-[var(--text-muted)]">
-                                        {stat.label}
-                                    </div>
+                {/* Right Column - Skills */}
+                <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+                    {skills.map((skill, idx) => (
+                        <motion.div
+                            key={skill.name}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: idx * 0.1 }}
+                            whileHover={{ y: -4, borderColor: '#333' }}
+                            className="p-5 rounded-xl border border-zinc-900 bg-zinc-950/50 transition-all duration-300"
+                        >
+                            <div className="flex items-center gap-3 mb-4 text-white">
+                                <div className="p-2 rounded-lg bg-zinc-900">
+                                    {skill.icon}
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Right: Skills */}
-                    <div className="glass rounded-2xl p-6">
-                        <h3 className="text-xl font-semibold mb-6 gradient-text">
-                            Technologies I Work With
-                        </h3>
-                        <div className="flex flex-wrap gap-3">
-                            {skills.map((skill) => (
-                                <span key={skill.name} className="tech-badge">
-                                    <span>{skill.icon}</span>
-                                    <span>{skill.name}</span>
-                                </span>
-                            ))}
-                        </div>
-                    </div>
+                                <span className="font-semibold">{skill.name}</span>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                {skill.items.map((item) => (
+                                    <span key={item} className="text-xs text-zinc-500 px-2 py-1 bg-zinc-900/50 rounded">
+                                        {item}
+                                    </span>
+                                ))}
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </section>

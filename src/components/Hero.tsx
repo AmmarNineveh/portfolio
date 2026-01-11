@@ -1,80 +1,105 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Github, Twitter, Mail, ArrowRight } from 'lucide-react';
+
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: { staggerChildren: 0.15, delayChildren: 0.3 }
+    }
+};
+
+const item = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0 }
+};
 
 export default function Hero() {
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
     return (
-        <section
-            id="home"
-            className="relative min-h-screen flex items-center justify-center overflow-hidden"
-        >
-            {/* Background Orbs */}
-            <div className="orb orb-1" />
-            <div className="orb orb-2" />
-            <div className="orb orb-3" />
+        <section className="relative min-h-screen flex flex-col justify-center max-w-5xl mx-auto px-6 pt-24 overflow-hidden">
 
-            {/* Content */}
-            <div
-                className={`relative z-10 text-center max-w-4xl mx-auto px-4 ${mounted ? 'animate-slide-up' : 'opacity-0'
-                    }`}
+            {/* Ambient Glow */}
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none" />
+
+            <motion.div
+                variants={container}
+                initial="hidden"
+                animate="show"
+                className="relative z-10"
             >
-                {/* Greeting */}
-                <p className="text-lg md:text-xl text-[var(--text-secondary)] mb-4">
-                    👋 Hello, I&apos;m
-                </p>
+                {/* Status */}
+                <motion.div variants={item} className="flex items-center gap-3 mb-10">
+                    <span className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+                    </span>
+                    <span className="text-zinc-500 text-xs font-medium tracking-[0.2em] uppercase">Available for Projects</span>
+                </motion.div>
 
-                {/* Name */}
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
-                    <span className="gradient-text animate-gradient">Ammar</span>
-                </h1>
+                {/* Main Heading */}
+                <motion.h1
+                    variants={item}
+                    className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] mb-8"
+                >
+                    <span className="text-white">I craft digital</span>
+                    <br />
+                    <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                        experiences.
+                    </span>
+                </motion.h1>
 
-                {/* Title */}
-                <p className="text-xl md:text-2xl lg:text-3xl text-[var(--text-secondary)] mb-4">
-                    Full Stack Developer & AI Enthusiast
-                </p>
+                {/* Subheading */}
+                <motion.p
+                    variants={item}
+                    className="text-lg md:text-xl text-zinc-400 max-w-xl leading-relaxed mb-12"
+                >
+                    Full Stack Developer & AI Engineer based in Iraq.
+                    I build intelligent systems that merge performance with elegance.
+                </motion.p>
 
-                {/* Description */}
-                <p className="text-base md:text-lg text-[var(--text-muted)] max-w-2xl mx-auto mb-10">
-                    Building intelligent solutions with modern technologies. From Discord
-                    bots to AI-powered operating systems and educational apps.
-                </p>
-
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="#projects" className="btn-primary">
-                        View My Projects
-                    </a>
-                    <a href="#contact" className="btn-secondary">
-                        Get In Touch
-                    </a>
-                </div>
-
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float">
-                    <svg
-                        className="w-6 h-10 text-[var(--text-muted)]"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 40"
+                {/* CTAs */}
+                <motion.div variants={item} className="flex flex-wrap items-center gap-4 mb-20">
+                    <motion.a
+                        href="#projects"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="group flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold text-sm tracking-wide"
                     >
-                        <rect
-                            x="1"
-                            y="1"
-                            width="22"
-                            height="38"
-                            rx="11"
-                            strokeWidth="2"
-                        />
-                        <circle className="animate-pulse" cx="12" cy="12" r="3" fill="currentColor" />
-                    </svg>
-                </div>
-            </div>
+                        View My Work
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </motion.a>
+
+                    <motion.a
+                        href="#contact"
+                        whileHover={{ scale: 1.02, borderColor: '#4f46e5' }}
+                        whileTap={{ scale: 0.98 }}
+                        className="px-7 py-4 rounded-full font-semibold text-sm tracking-wide text-zinc-300 border border-zinc-800 transition-colors duration-300"
+                    >
+                        Let's Talk
+                    </motion.a>
+                </motion.div>
+
+                {/* Social Links */}
+                <motion.div variants={item} className="flex items-center gap-5">
+                    {[
+                        { icon: <Github className="w-5 h-5" />, href: '#' },
+                        { icon: <Twitter className="w-5 h-5" />, href: '#' },
+                        { icon: <Mail className="w-5 h-5" />, href: 'mailto:contact@ammar.dev' },
+                    ].map((social, i) => (
+                        <motion.a
+                            key={i}
+                            href={social.href}
+                            whileHover={{ y: -3, color: '#fff' }}
+                            className="text-zinc-600 transition-colors duration-300"
+                        >
+                            {social.icon}
+                        </motion.a>
+                    ))}
+                </motion.div>
+            </motion.div>
+
         </section>
     );
 }

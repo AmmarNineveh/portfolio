@@ -1,31 +1,23 @@
 export default function Footer() {
-    const currentYear = new Date().getFullYear();
-
     return (
-        <footer className="relative py-8 border-t border-[var(--border-color)]">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-                {/* Logo */}
-                <a href="#home" className="text-lg font-bold gradient-text">
-                    Ammar
-                </a>
+        <footer className="py-12 border-t border-zinc-900">
+            <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
 
-                {/* Copyright */}
-                <p className="text-sm text-[var(--text-muted)]">
-                    © {currentYear} Ammar. Built with Next.js & 💜
+                <div className="flex items-center gap-2">
+                    <span className="text-white font-bold">Ammar</span>
+                    <span className="text-indigo-500 font-bold">.</span>
+                </div>
+
+                <p className="text-xs text-zinc-600 tracking-wide">
+                    DESIGNED & ENGINEERED BY AMMAR © {new Date().getFullYear()}
                 </p>
 
-                {/* Quick Links */}
-                <div className="flex items-center gap-6 text-sm">
-                    <a href="#about" className="nav-link">
-                        About
-                    </a>
-                    <a href="#projects" className="nav-link">
-                        Projects
-                    </a>
-                    <a href="#contact" className="nav-link">
-                        Contact
-                    </a>
+                <div className="flex gap-6 text-xs text-zinc-600 tracking-wide">
+                    <a href="#" className="hover:text-white transition-colors">TWITTER</a>
+                    <a href="#" className="hover:text-white transition-colors">GITHUB</a>
+                    <a href="#" className="hover:text-white transition-colors">LINKEDIN</a>
                 </div>
+
             </div>
         </footer>
     );
