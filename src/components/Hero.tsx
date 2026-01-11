@@ -84,17 +84,34 @@ export default function Hero() {
                 {/* Social Links */}
                 <motion.div variants={item} className="flex items-center gap-5">
                     {[
-                        { icon: <Github className="w-5 h-5" />, href: '#' },
-                        { icon: <Twitter className="w-5 h-5" />, href: '#' },
+                        { icon: <Github className="w-5 h-5" />, href: 'https://github.com/AmmarNineveh' },
                         { icon: <Mail className="w-5 h-5" />, href: 'mailto:contact@ammar.dev' },
+                        {
+                            icon: (
+                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M9 10C9 10 9 6 12 6C15 6 15 10 15 10" />
+                                    <path d="M12 18V22" />
+                                    <path d="M12 18C12 18 16 18 16 15C16 12 12 12 12 12C12 12 8 12 8 15C8 18 12 18 12 18Z" />
+                                    <circle cx="12" cy="12" r="10" />
+                                </svg>
+                            ),
+                            href: '#',
+                            label: '.1x7'
+                        },
                     ].map((social, i) => (
                         <motion.a
                             key={i}
                             href={social.href}
                             whileHover={{ y: -3, color: '#fff' }}
-                            className="text-zinc-600 transition-colors duration-300"
+                            className="text-zinc-600 transition-colors duration-300 relative group"
+                            title={social.label}
                         >
                             {social.icon}
+                            {social.label && (
+                                <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-zinc-800 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                    {social.label}
+                                </span>
+                            )}
                         </motion.a>
                     ))}
                 </motion.div>
