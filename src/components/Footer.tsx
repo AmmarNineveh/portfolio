@@ -13,9 +13,9 @@ export default function Footer() {
                 </p>
 
                 <div className="flex gap-6 text-xs text-zinc-600 tracking-wide">
-                    <a href="#" className="hover:text-white transition-colors">TWITTER</a>
-                    <a href="#" className="hover:text-white transition-colors">GITHUB</a>
-                    <a href="#" className="hover:text-white transition-colors">LINKEDIN</a>
+                    <a href="https://github.com/AmmarNineveh" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GITHUB</a>
+                    <a href="mailto:contact@ammar.dev" className="hover:text-white transition-colors">EMAIL</a>
+                    <span className="cursor-not-allowed opacity-50">TWITTER</span>
                 </div>
 
             </div>
