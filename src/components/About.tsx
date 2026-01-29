@@ -23,13 +23,14 @@ export default function About() {
                     transition={{ duration: 0.6 }}
                     className="lg:col-span-5"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">About Me</h2>
-                    <div className="space-y-5 text-zinc-400 leading-relaxed">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-6">About Us</h2>
+                    <div className="space-y-5 text-[#6B7280] leading-relaxed">
                         <p>
-                            I don't just write code—I engineer systems. With deep expertise in
-                            <span className="text-white font-medium"> AI integration</span> and
-                            <span className="text-white font-medium"> scalable architecture</span>,
-                            I create solutions that are both powerful and refined.
+                            At Nineveh AI, we don't just write code—we engineer intelligent systems.
+                            With deep expertise in
+                            <span className="text-[#4A5561] font-medium"> AI integration</span> and
+                            <span className="text-[#4A5561] font-medium"> scalable architecture</span>,
+                            we create solutions that are both powerful and refined.
                         </p>
                         <p>
                             Currently building intelligent operating systems and educational platforms
@@ -47,18 +48,18 @@ export default function About() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: idx * 0.1 }}
-                            whileHover={{ y: -4, borderColor: '#333' }}
-                            className="p-5 rounded-xl border border-zinc-900 bg-zinc-950/50 transition-all duration-300"
+                            whileHover={{ y: -4 }}
+                            className="p-5 rounded-xl border border-[#E5E5E0] bg-white hover:shadow-md transition-all duration-300"
                         >
-                            <div className="flex items-center gap-3 mb-4 text-white">
-                                <div className="p-2 rounded-lg bg-zinc-900">
+                            <div className="flex items-center gap-3 mb-4 text-[#1a1a1a]">
+                                <div className="p-2 rounded-lg bg-[#F5F5F0] text-[#4A5561]">
                                     {skill.icon}
                                 </div>
                                 <span className="font-semibold">{skill.name}</span>
                             </div>
                             <div className="flex flex-wrap gap-2">
                                 {skill.items.map((item) => (
-                                    <span key={item} className="text-xs text-zinc-500 px-2 py-1 bg-zinc-900/50 rounded">
+                                    <span key={item} className="text-xs text-[#6B7280] px-2 py-1 bg-[#F5F5F0] rounded">
                                         {item}
                                     </span>
                                 ))}

@@ -13,24 +13,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ammar | Full Stack Developer & AI Engineer",
-  description: "I craft digital experiences. Full Stack Developer & AI Engineer based in Iraq, building intelligent systems that merge performance with elegance.",
-  keywords: ["developer", "portfolio", "AI", "full stack", "Next.js", "Flutter", "Rust"],
-  authors: [{ name: "Ammar" }],
+  title: "Nineveh AI | Building the Future with AI",
+  description: "We create intelligent systems that merge cutting-edge AI technology with elegant design. Based in Iraq, serving the world.",
+  keywords: ["AI", "artificial intelligence", "machine learning", "Nineveh AI", "Next.js", "technology", "Iraq"],
+  authors: [{ name: "Nineveh AI" }],
   openGraph: {
-    title: "Ammar | Full Stack Developer & AI Engineer",
-    description: "Building intelligent systems that merge performance with elegance.",
+    title: "Nineveh AI | Building the Future with AI",
+    description: "We create intelligent systems that merge cutting-edge AI technology with elegant design.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ammar | Full Stack Developer & AI Engineer",
-    description: "Building intelligent systems that merge performance with elegance.",
+    title: "Nineveh AI | Building the Future with AI",
+    description: "We create intelligent systems that merge cutting-edge AI technology with elegant design.",
   },
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/logo-light.png",
+    apple: "/logo-light.png",
   },
 };
 
