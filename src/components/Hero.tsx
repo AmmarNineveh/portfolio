@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Mail, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
@@ -13,6 +13,9 @@ export default function Hero() {
         () => ["intelligently.", "with purpose.", "for Iraq.", "elegantly.", "with AI."],
         []
     );
+    // Ref for Spline wrapper — forwards wheel events so the canvas
+    // doesn't block page scrolling
+    const splineWrapperRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -20,6 +23,18 @@ export default function Hero() {
         }, 2200);
         return () => clearTimeout(timeoutId);
     }, [titleNumber, titles]);
+
+    // Forward Spline canvas wheel events so the canvas doesn't block page scrolling
+    useEffect(() => {
+        const el = splineWrapperRef.current;
+        if (!el) return;
+        const handler = (e: WheelEvent) => {
+            e.preventDefault();
+            window.scrollBy({ top: e.deltaY, left: 0 });
+        };
+        el.addEventListener('wheel', handler, { passive: false });
+        return () => el.removeEventListener('wheel', handler);
+    }, []);
 
     const container = {
         hidden: { opacity: 0 },
@@ -151,17 +166,19 @@ export default function Hero() {
                     </motion.div>
 
                     {/* ── Right: 3D Spline ─────────────────────── */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        className="flex-1 w-full lg:w-auto h-[400px] lg:h-[600px] relative"
-                    >
-                        <SplineScene
-                            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                    <div ref={splineWrapperRef} className="flex-1 w-full lg:w-auto h-[400px] lg:h-[600px] relative">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 1, delay: 0.4 }}
                             className="w-full h-full"
-                        />
-                    </motion.div>
+                        >
+                            <SplineScene
+                                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                                className="w-full h-full"
+                            />
+                        </motion.div>
+                    </div>
 
                 </div>
             </div>
