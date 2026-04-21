@@ -1,21 +1,34 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import TechStack from '@/components/TechStack';
+import { SectionScroll } from '@/components/ui/SectionScroll';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
+import BeforeAfter from '@/components/BeforeAfter';
 import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+import { CinematicFooter } from '@/components/ui/motion-footer';
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="bg-[#F0F0EB] overflow-x-hidden">
         <Hero />
-        <About />
-        <Projects />
-        <Contact />
+        <TechStack />
+        <SectionScroll>
+          <About />
+        </SectionScroll>
+        <SectionScroll>
+          <Projects />
+        </SectionScroll>
+        <SectionScroll>
+          <BeforeAfter />
+        </SectionScroll>
+        <SectionScroll>
+          <Contact />
+        </SectionScroll>
       </main>
-      <Footer />
+      <CinematicFooter />
     </>
   );
 }

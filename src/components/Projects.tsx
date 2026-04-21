@@ -11,7 +11,7 @@ export default function Projects() {
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ duration: 0.6 }}
                 className="mb-16"
             >
@@ -24,10 +24,6 @@ export default function Projects() {
                 {projects.map((project, idx) => (
                     <Link key={project.slug} href={`/projects/${project.slug}`}>
                         <motion.div
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-50px' }}
-                            transition={{ duration: 0.5, delay: idx * 0.1 }}
                             whileHover={{ y: -4 }}
                             className="group relative p-8 rounded-xl border border-[#E5E5E0] bg-white hover:border-[#D4D4CF] hover:shadow-lg transition-all duration-300 cursor-pointer h-full"
                         >
