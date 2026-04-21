@@ -4,7 +4,6 @@ import TechStack from '@/components/TechStack';
 import { SectionScroll } from '@/components/ui/SectionScroll';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
-import BeforeAfter from '@/components/BeforeAfter';
 import Contact from '@/components/Contact';
 import { CinematicFooter } from '@/components/ui/motion-footer';
 
@@ -20,9 +19,6 @@ export default function Home() {
         </SectionScroll>
         <SectionScroll>
           <Projects />
-        </SectionScroll>
-        <SectionScroll>
-          <BeforeAfter />
         </SectionScroll>
         <SectionScroll>
           <Contact />
