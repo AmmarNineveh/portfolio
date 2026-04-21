@@ -21,8 +21,9 @@
 @theme inline {
   --color-background: var(--bg-page);
   --color-foreground: var(--text-primary);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --font-heading: var(--font-archivo), system-ui, sans-serif;
 }
 
 /* Smooth Scrolling */
@@ -33,9 +34,33 @@ html {
 body {
   background: var(--bg-page);
   color: var(--text-primary);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+}
+
+/* Accessibility: Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Cursor pointer on all interactive elements */
+button, a, [role="button"], [tabindex]:not([tabindex="-1"]) {
+  cursor: pointer;
+}
+
+/* Improved text contrast for muted text (4.5:1 minimum) */
+.text-muted-safe {
+  color: #5A6270;
 }
 
 /* Premium Selection */

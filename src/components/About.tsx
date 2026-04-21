@@ -19,7 +19,7 @@ export default function About() {
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.3 }}
                     transition={{ duration: 0.6 }}
                     className="lg:col-span-5"
                 >
@@ -46,10 +46,10 @@ export default function About() {
                             key={skill.name}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false, amount: 0.1 }}
                             transition={{ duration: 0.5, delay: idx * 0.1 }}
                             whileHover={{ y: -4 }}
-                            className="p-5 rounded-xl border border-[#E5E5E0] bg-white hover:shadow-md transition-all duration-300"
+                            className="p-5 rounded-xl border border-[#E5E5E0] bg-white hover:shadow-md transition-all duration-300 cursor-default"
                         >
                             <div className="flex items-center gap-3 mb-4 text-[#1a1a1a]">
                                 <div className="p-2 rounded-lg bg-[#F5F5F0] text-[#4A5561]">
