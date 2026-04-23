@@ -101,7 +101,6 @@ const STYLES = `
 type MagneticButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   React.AnchorHTMLAttributes<HTMLAnchorElement> & {
     as?: React.ElementType;
-    children?: React.ReactNode;
   };
 
 const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>(
@@ -135,9 +134,9 @@ const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>(
     }, []);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const Comp = Component as any;
+    const AnyComp = Component as any;
     return (
-      <Comp
+      <AnyComp
         ref={(node: HTMLElement) => {
           (localRef as React.MutableRefObject<HTMLElement | null>).current = node;
           if (typeof forwardedRef === "function") forwardedRef(node);
@@ -147,7 +146,7 @@ const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>(
         {...props}
       >
         {children}
-      </Comp>
+      </AnyComp>
     );
   }
 );

@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import TechStack from '@/components/TechStack';
-import ThreeSceneClient from '@/components/ThreeSceneClient';
+import Scene3D from '@/components/Scene3D';
 import { SectionScroll } from '@/components/ui/SectionScroll';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
@@ -14,7 +14,7 @@ export default function Home() {
       <main className="bg-[#F0F0EB] overflow-x-hidden">
         <Hero />
         <TechStack />
-        <ThreeSceneClient />
+        <Scene3D />
         <SectionScroll>
           <About />
         </SectionScroll>
