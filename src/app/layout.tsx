@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Space_Grotesk } from "next/font/google";
+import { Archivo, Space_Grotesk, Tajawal } from "next/font/google";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -12,6 +12,12 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const tajawal = Tajawal({
+  variable: "--font-tajawal",
+  subsets: ["arabic"],
+  weight: ["300", "400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -44,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${archivo.variable} ${spaceGrotesk.variable} antialiased paper-texture grid-pattern overflow-x-hidden`}
+        className={`${archivo.variable} ${spaceGrotesk.variable} ${tajawal.variable} antialiased paper-texture grid-pattern overflow-x-hidden`}
       >
         {children}
       </body>
