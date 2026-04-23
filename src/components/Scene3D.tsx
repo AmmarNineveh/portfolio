@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, Suspense } from 'react';
+import { useRef, Suspense, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, MeshDistortMaterial, Environment, Torus } from '@react-three/drei';
 import { motion, useScroll } from 'framer-motion';
@@ -93,16 +93,29 @@ function R3FScene({
 export default function Scene3D() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const scrollProgressRef = useRef(0);
+  // Mount Canvas only when section is in view to avoid WebGL context conflicts
+  const [isMounted, setIsMounted] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
   });
 
-  // Keep plain ref in sync
   scrollYProgress.on('change', (v) => {
     scrollProgressRef.current = v;
   });
+
+  // Intersection Observer — destroy/recreate context as needed
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setIsMounted(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
     <section
@@ -125,15 +138,17 @@ export default function Scene3D() {
         }}
       />
 
-      {/* R3F Canvas */}
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        dpr={[1, 2]}
-        className="absolute inset-0 z-10"
-        gl={{ antialias: true, alpha: true }}
-      >
-        <R3FScene scrollProgressRef={scrollProgressRef} />
-      </Canvas>
+      {/* R3F Canvas — only mounted when section is visible */}
+      {isMounted && (
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 45 }}
+          dpr={[1, 1.5]}
+          className="absolute inset-0 z-10"
+          gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+        >
+          <R3FScene scrollProgressRef={scrollProgressRef} />
+        </Canvas>
+      )}
 
       {/* Overlay text */}
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none">
